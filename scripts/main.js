@@ -1,3 +1,5 @@
+
+/*
 //LECTURE 2-8
 //BASIC
 
@@ -52,5 +54,36 @@ console.log(
 		isMarried
 );
 
+
 // LECTURE 2-10
 // Basic operators
+
+var now, yearJonh, yearMark, ageJonh, ageMark;
+
+now = 2018;
+ageJonh = 28;
+ageMark = 33;
+
+//math operators
+yearJonh = now - ageJonh;
+yearMark = now - ageMark;
+
+console.log(yearJonh);
+
+console.log(now + 2);
+console.log(now * 2);
+console.log(now /10);
+
+//logical operators
+var jonhOlder = ageJonh < ageMark;
+console.log(jonhOlder);
+
+var jonhOlder = ageJonh > ageMark;
+console.log(jonhOlder);
+
+
+// typeof operator 
+console.log(typeof jonhOlder);
+
+*/
+

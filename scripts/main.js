@@ -85,5 +85,33 @@ console.log(jonhOlder);
 // typeof operator 
 console.log(typeof jonhOlder);
 
+
+
+//LECTURE 2-11
+//OPERATOR PRECEDENCE
+
+var now = 2018;
+var yearJonh = 1989;
+var fullAge = 18;
+
+var isFullAge = now - yearJonh >= fullAge;
+console.log(isFullAge)
+
+var ageJonh = now - yearJonh;
+var ageMark = 35; 
+var average = (ageJonh + ageMark) / 2; 
+
+console.log(average);
+
+//Multiple assignments 
+var x, y; 
+x = y = (3+5) * 4 -6; 
+console.log(x, y);
+
+//more opertors 
+x *=2;
+console.log(x);
+
 */
+
 

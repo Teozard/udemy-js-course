@@ -219,4 +219,41 @@ if (height || height === 0) {
 if(height == 23){
 	console.log("The == operator does type coercion");
 }
+
+
+//functions
+function caclAge(birthYear) {
+	return 2018 - birthYear;
+}
+
+function yearUntilRetirement(year, firstName) {
+	var age = caclAge(year);
+	var retirement = 63 - age;
+
+	if (retirement > 0) {
+		console.log(firstName + " retirement is " + retirement + " years");
+	} else {
+		console.log(firstName + " is already retired.");
+	}
+}
+
+yearUntilRetirement(1993, "Vas");
+
 */
+
+var whatDoYouDo = function(job, firstName) {
+	switch(job){
+		case 'teacher':
+			return firstName + ' teaches kids how to code';
+		case 'driver':
+			return firstName + ' drives a cab to Lisbon';
+		case 'desinger':
+			return firstName + '  design beautiful websites';
+		default:
+			return firstName + ' does something else';
+	}
+}
+
+console.log(whatDoYouDo('teacher', 'jonh'));
+console.log(whatDoYouDo('driver', 'tom'));
+console.log(whatDoYouDo('desinger', 'mark'));

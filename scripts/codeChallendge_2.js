@@ -35,12 +35,12 @@ switch (true) {
 				teamJohn
 		);
 		break;
-	case teamMarry == teamMark && teamMarry == teamMark:
+	case teamMarry === teamMark && teamMarry === teamMark:
 		console.log(
-			"Its a draw!: "
-			 + teamJohn + " : "
-			 + teamMark + " : "
-			 + teamMarry
+			"Its a draw!: " + teamJohn + " : " + teamMark + " : " + teamMarry
 		);
+		break;
+	default:
+		console.log("Something went wrong");
 		break;
 }

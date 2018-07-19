@@ -1,20 +1,25 @@
 var markWeight, markHeight, jonhWeight, jonhHeight;
 
 //parameters, height in meters, weight in kgs 
-markWeight = 90;
-markHeight = 1.8;
+markWeight = 45;
+markHeight = 1.6;
 
 jonhWeight = 75;
 jonhHeight = 1.83;
 
 //BMI calculations 
-var markBMI = markWeight / (markHeight*markHeight);
+var markBMI = markWeight / (markHeight**2);
 var jonhBMI = jonhWeight / (jonhHeight**2);
 
 //debug output 
 console.log(markBMI, jonhBMI);
 
-var isHigherBMI = markBMI > jonhBMI;
+if(markBMI > jonhBMI){
+	console.log('Mark\'s BMI is higher then Jonh\'s ');
+} else {
+	console.log('Jonh\' BMI is higher then Mark\'s ');
+}
 
-//final output
-console.log("Is MArk's BMI higher than John's? " + isHigherBMI)
+//var isHigherBMI = markBMI > jonhBMI;
+//console.log("Is MArk's BMI higher than John's? " + isHigherBMI)
+

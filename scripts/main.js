@@ -322,7 +322,6 @@ jane.birthYear = 1960;
 jane['lastName'] = 'Smith'
 console.log(jane)
 
-*/
 
 //Objects and methods 
 
@@ -341,3 +340,35 @@ var jonh = {
 jonh.caclAge();
 console.log(jonh);
 
+
+
+//LOOPS
+var jonh = ["Jonh", "Smith", 1990, "teacher"];
+
+for (var i = 0; i < jonh.length; i++) {
+	console.log(jonh[i]);
+}
+
+var i = 0;
+while (i < jonh.length) {
+	console.log(jonh[i]);
+	i++;
+}
+*/
+//continue and loops 
+
+var jonh = ["Jonh", "Smith", 1990, "teacher", false, 'blue'];
+
+for (var i = 0; i < jonh.length; i++) {
+	if(typeof jonh[i] !== 'string') continue;
+	console.log(jonh[i]);
+}
+
+for (var i = 0; i < jonh.length; i++) {
+	if(typeof jonh[i] !== 'string') break;
+	console.log(jonh[i]);
+}
+
+for (var i = jonh.length; i >= 0; i--) {
+	console.log(jonh[i]);
+}

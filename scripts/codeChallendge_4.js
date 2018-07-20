@@ -9,7 +9,7 @@ var john = {
 
 var mark = {
 	name: "Mark Weiss",
-	mass: 90,
+	mass: 85,
 	height: 1.9,
 	calcMass: function() {
 		return (this.BMI = this.mass / this.height ** 2);

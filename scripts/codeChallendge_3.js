@@ -1,11 +1,14 @@
-function tipCalculator(bill) {
-	switch (true) {
+function tipCalculator(bill){
+	switch(true){
 		case bill >= 200:
-			return (tip = bill * 0.1);
+			return tip = bill * 0.1;
+			break;
 		case bill >= 50 && bill < 200:
-			return (tip = bill * 0.15);
+			return tip = bill * 0.15;
+			break;
 		default:
-			return (tip = bill * 0.2);
+			return tip = bill * 0.2;
+			break;
 	}
 }
 

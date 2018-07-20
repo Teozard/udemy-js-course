@@ -292,4 +292,52 @@ var isDesigner =
 
 console.log(isDesigner);
 
+
+
+//Objects and properties 
+
+var jonh = {
+	firstName: 'Jonh',
+	lastName: 'Smith',
+	birthYear: 1990,
+	family: ['Jane', 'Mark', 'Bob', 'Emily'],
+	job: 'teacher',
+	isMarried: false
+}
+console.log(jonh.firstName);
+console.log(jonh["lastName"]);
+console.log(jonh.family[1]);
+var x = "lastName";
+console.log(jonh[x]);
+
+jonh.job = "desinger";
+jonh.isMarried = true;
+
+console.log(jonh.job);
+console.log(jonh.isMarried);
+
+var jane = new Object();
+jane.name = 'Jane';
+jane.birthYear = 1960;
+jane['lastName'] = 'Smith'
+console.log(jane)
+
 */
+
+//Objects and methods 
+
+var jonh = {
+	firstName: 'Jonh',
+	lastName: 'Smith',
+	birthYear: 1993,
+	family: ['Jane', 'Mark', 'Bob', 'Emily'],
+	job: 'teacher',
+	isMarried: false,
+	caclAge: function() {
+		this.age = 2018 - this.birthYear;
+	}
+};
+
+jonh.caclAge();
+console.log(jonh);
+

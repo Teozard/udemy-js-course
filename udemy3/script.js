@@ -1,18 +1,41 @@
 ///////////////////////////////////////
 // Lecture: Hoisting
+/*
+//functions
+calculateAge(1965);
+
+function calculateAge(year){
+    console.log(2016 - year);
+}
+
+//retirement(1990);
+
+var retirement = function(year){
+    console.log(65 - (2016 - year));
+}
+
+
+
+//variables
+console.log(age); //undefined
+var age = 23;
+console.log(age); //23
+
+
+
+function foo (){
+    onsole.log(age); //undefined
+    var age = 65;
+    console.log(age); //65
+}
+
+foo();
+console.log(age); // 23
 
 
 
 
-
-
-
-
-
-
-
-
-
+*/
 
 
 
@@ -36,13 +59,13 @@ function first() {
         console.log(a + b + c);
     }
 }
-*/
 
+*/
 
 
 // Example to show the differece between execution stack and scope chain
 
-/*
+
 var a = 'Hello!';
 first();
 
@@ -60,7 +83,7 @@ function third() {
     var d = 'John';
     console.log(a + b + c + d);
 }
-*/
+
 
 
 

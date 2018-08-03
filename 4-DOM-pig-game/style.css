@@ -119,6 +119,28 @@ button {
     transition: background-color 0.3s, color 0.3s;
 }
 
+input {
+    position: absolute;
+    width: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;        
+    background-color: #EB4D4D;
+    border: none;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+input::placeholder {
+    font-size: 12px;
+    text-align: center;
+    color: #fff; 
+}
+
 button:hover { font-weight: 600; }
 button:hover i { margin-right: 20px; }
 
@@ -137,6 +159,7 @@ i {
     transition: margin 0.3s;
 }
 
+.input-field { top: 5px; }
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}

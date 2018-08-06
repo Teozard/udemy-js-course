@@ -16,37 +16,44 @@ var scores,
 	gamePlaying,
 	winScore,
 	prvDiceArr = new Array(),
-	prvDice;
+	prvDiceOne,
+	prvDiceTwo;
 init();
 
 //anon function
 document.querySelector(".btn-roll").addEventListener("click", function() {
 	if (gamePlaying) {
 		// 1. Rand number
-		dice = Math.floor(Math.random() * 6) + 1;
+		dice[0] = Math.floor(Math.random() * 6) + 1;
+		dice[1] = Math.floor(Math.random() * 6) + 1;
 
 		//get and store prev result of the dice
-		prvDiceArr.push(dice);
-		prvDice = prvDiceArr[prvDiceArr.length - 2];
+		prvDiceArr.push(dice[0]);
+		prvDiceArr.push(dice[1]);
+		prvDiceOne = prvDiceArr[prvDiceArr.length - 2];
+		prvDiceTwo = prvDiceArr[prvDiceArr.length - 3];
 
 		// 2. Display the result
 		var diceDOM = document.querySelector(".dice");
 		diceDOM.style.display = "block";
-		diceDOM.src = "dice-" + dice + ".png";
+		diceDOM.src = "dice-" + dice[0] + ".png";
+
+		
 
 		// 3. Update the round score if the rolled number was not a 1 and not a double 6
-		if (dice == 1){
+		if (dice[0] == 1) {
 			nextPlayer();
-		} 
-		else if (dice == 6 && prvDice ==6) {
+		} else if (dice[0] == 6 && prvDiceOne == 6) {
 			scores[activePlayer] = 0;
 			document.querySelector("#score-" + activePlayer).textContent = 0;
 			nextPlayer();
-
-		}
-		else {
+		} else if (dice[1] == 6 && prvDiceTwo == 6) {
+			scores[activePlayer] = 0;
+			document.querySelector("#score-" + activePlayer).textContent = 0;
+			nextPlayer();
+		} else {
 			//Add score
-			roundScore += dice;
+			roundScore += dice[0];
 			document.querySelector(
 				"#current-" + activePlayer
 			).textContent = roundScore;
@@ -57,9 +64,9 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 document.querySelector(".btn-hold").addEventListener("click", function() {
 	if (gamePlaying) {
 		// get win score value
-		if(document.querySelector(".input-field").value == ''){
+		if (document.querySelector(".input-field").value == "") {
 			winScore = 100;
-		}else {
+		} else {
 			winScore == document.querySelector(".input-field").value;
 		}
 
@@ -92,7 +99,8 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
 });
 document.querySelector(".btn-new").addEventListener("click", init);
 
-nextPlayer();function nextPlayer() {
+nextPlayer();
+function nextPlayer() {
 	//Next player
 	activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
 	roundScore = 0;

@@ -9,8 +9,14 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, dice, gamePlaying, previusRoll, winScore;
-
+var scores,
+	roundScore,
+	activePlayer,
+	dice = new Array(),
+	gamePlaying,
+	winScore,
+	prvDiceArr = new Array(),
+	prvDice;
 init();
 
 //anon function
@@ -19,22 +25,31 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 		// 1. Rand number
 		dice = Math.floor(Math.random() * 6) + 1;
 
-
+		//get and store prev result of the dice
+		prvDiceArr.push(dice);
+		prvDice = prvDiceArr[prvDiceArr.length - 2];
 
 		// 2. Display the result
 		var diceDOM = document.querySelector(".dice");
 		diceDOM.style.display = "block";
 		diceDOM.src = "dice-" + dice + ".png";
 
-		// 3. Update the round score if the rolled number was not a 1
-		if (dice !== 1) {
+		// 3. Update the round score if the rolled number was not a 1 and not a double 6
+		if (dice == 1){
+			nextPlayer();
+		} 
+		else if (dice == 6 && prvDice ==6) {
+			scores[activePlayer] = 0;
+			document.querySelector("#score-" + activePlayer).textContent = 0;
+			nextPlayer();
+
+		}
+		else {
 			//Add score
 			roundScore += dice;
 			document.querySelector(
 				"#current-" + activePlayer
 			).textContent = roundScore;
-		} else {
-			nextPlayer();
 		}
 	}
 });
@@ -42,7 +57,11 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 document.querySelector(".btn-hold").addEventListener("click", function() {
 	if (gamePlaying) {
 		// get win score value
-		winScore = document.querySelector('.input-field').value;
+		if(document.querySelector(".input-field").value == ''){
+			winScore = 100;
+		}else {
+			winScore == document.querySelector(".input-field").value;
+		}
 
 		// add current score to global score
 		scores[activePlayer] += roundScore;
@@ -73,7 +92,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
 });
 document.querySelector(".btn-new").addEventListener("click", init);
 
-function nextPlayer() {
+nextPlayer();function nextPlayer() {
 	//Next player
 	activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
 	roundScore = 0;
@@ -85,6 +104,8 @@ function nextPlayer() {
 	document.querySelector(".player-1-panel").classList.toggle("active");
 
 	document.querySelector(".dice").style.display = "none";
+
+	prvDiceArr = [];
 }
 
 function init() {
@@ -92,7 +113,7 @@ function init() {
 	roundScore = 0;
 	activePlayer = 0;
 	gamePlaying = true;
-	previusRoll = 0;
+	prvDiceArr = [];
 
 	document.querySelector(".dice").style.display = "none";
 
@@ -119,7 +140,7 @@ YOUR 3 CHALLENGES
 1. A player looses his ENTIRE score when he rolls two 6 in a row. 
 After that, it's the next player's turn. (HINT: Always save the 
 previous dice rolls in a separate variable)
-
+--DONE--
 
 2. Add an input field to the HTML where players can set the winning 
 score, so that they can change the predefined score of 100. (HINT: 

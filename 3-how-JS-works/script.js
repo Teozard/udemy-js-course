@@ -37,12 +37,8 @@ console.log(age); // 23
 
 */
 
-
-
-
 ///////////////////////////////////////
 // Lecture: Scoping
-
 
 // First scoping example
 
@@ -61,7 +57,6 @@ function first() {
 }
 
 */
-
 
 // Example to show the differece between execution stack and scope chain
 
@@ -86,15 +81,38 @@ function third() {
 
 */
 
-
 ///////////////////////////////////////
 // Lecture: The this keyword
 
+//console.log(this);
+/*
+calcAge(1985);
 
+function calcAge(age){
+    console.log(2016 - age);
+    console.log(this);
+}*/
 
+var John = {
+    name: "John",
+    yearOfBirth: 1990,
+    calculateAge: function() {
+        console.log(this);
+        console.log(2016 - this.yearOfBirth);
+        /*
+        function innerFunction() {
+            console.log(this);
+        }
+        innerFunction();*/
+    }
+};
 
+John.calculateAge();
 
+var mike = {
+    name: "Mike",
+    yearOfBirth: 1984
+};
 
-
-
-
+mike.calculateAge = John.calculateAge;
+mike.calculateAge();

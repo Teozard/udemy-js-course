@@ -27,6 +27,8 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 		dice[0] = Math.floor(Math.random() * 6) + 1;
 		dice[1] = Math.floor(Math.random() * 6) + 1;
 
+		console.log(dice);
+
 		//get and store prev result of the dice
 		prvDiceArr.push(dice[0]);
 		prvDiceArr.push(dice[1]);
@@ -37,6 +39,10 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 		var diceDOM = document.querySelector(".dice");
 		diceDOM.style.display = "block";
 		diceDOM.src = "dice-" + dice[0] + ".png";
+
+		var diceDOM2 = document.querySelector(".dice-2");
+		diceDOM2.style.display = "block";
+		diceDOM2.src = "dice-" + dice[1] + ".png";
 
 		
 
@@ -54,6 +60,7 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 		} else {
 			//Add score
 			roundScore += dice[0];
+			roundScore += dice[1];
 			document.querySelector(
 				"#current-" + activePlayer
 			).textContent = roundScore;
@@ -82,6 +89,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
 			document.querySelector("#name-" + activePlayer).textContent =
 				"Winner!";
 			document.querySelector(".dice").style.display = "none";
+			document.querySelector(".dice-2").style.display = "none";
 
 			document
 				.querySelector(".player-" + activePlayer + "-panel")
@@ -112,6 +120,7 @@ function nextPlayer() {
 	document.querySelector(".player-1-panel").classList.toggle("active");
 
 	document.querySelector(".dice").style.display = "none";
+	document.querySelector(".dice-2").style.display = "none";
 
 	prvDiceArr = [];
 }
@@ -124,6 +133,7 @@ function init() {
 	prvDiceArr = [];
 
 	document.querySelector(".dice").style.display = "none";
+	document.querySelector(".dice-2").style.display = "none";
 
 	document.getElementById("score-0").textContent = 0;
 	document.getElementById("score-1").textContent = 0;

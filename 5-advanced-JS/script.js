@@ -101,19 +101,19 @@ console.log(obj.city);
 
 
 // Passing functions as arguments 
-
+/*
 var years = [1990, 1965, 1937, 2005, 1998];
 
-function arrayCacl(arr, fn){
-  var arrRes = [];
-  for(var i=0; i < arr.length; i++){
-    arrRes.push(fn(arr[i]));
-  }
-  return arrRes;
+function arrayCacl(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
 }
 
 function calculateAge(el){
-  return 2016-el;
+    return 2016-el;
 }
 
 function isFullAge(el){
@@ -124,21 +124,152 @@ function maxHeartRate(el){
     if (el >= 18 && el <= 81){
         return Math.round(206.9 - (0.67 * el));
     }
-    else{
+    else {
         return -1;
     }
 }
 
-var ages = arrayCacl(years, calculateAge); 
+var ages = arrayCacl(years, calculateAge);
 var fullAges = arrayCacl(ages, isFullAge);
 var rates = arrayCacl(ages, maxHeartRate);
 console.log(ages);
 console.log(fullAges);
 console.log(rates);
+*/
+
+
+// Functions returning functions 
+/*
+function  invervewQuestion(job){
+    if (job === 'designer'){
+        return function(name){
+            console.log(name + ' can you please explain what UX design is?');
+        };
+    } else if (job === 'teacher') {
+        return function(name){
+            console.log('Hello ' + name + ' , what subject do you teach?');
+        };
+    } else {
+        return function(name) {
+            console.log('Hello ' + name + ' , what do you do?');
+        };
+    }
+}
+
+var teacherQuestion = invervewQuestion('teacher');
+var desQuestion = invervewQuestion('designer');
+teacherQuestion('John');
+desQuestion('Mark');
+
+invervewQuestion('teacher')('Max');
+
+//roll dice 
+//if 1-2 == 1 dmg
+//2-4 = 2 dmg
+//5-6 = 3 dmg
+
+var dice;
+dice = Math.floor(Math.random() * 6) + 1;
+console.log(dice);
+
+function diceRes(number){
+    if(number <= 2){
+        return function(name){
+            console.log(name + ' did 1 damage');
+        };
+    } else if (number >= 5) {
+        return function(name){
+            console.log(name + ' did 3 damage');
+        };
+    } else {
+        return function(name){
+            console.log(name + ' did 2 damage');
+        };
+    }
+}
+
+diceRes(dice)('Theo');
+*/
+
+/*
+// IIFE - Immediately Invoked Function Expressions 
+function game(){
+    var score = Math.random() * 10;
+    console.log(score >=5);
+}
+game();
+
+// SAME
+
+(function () {
+    var score = Math.random() * 10;
+    console.log(score >=5);
+})();
+
+(function (GoodLuck) {
+    var score = Math.random() * 10;
+    console.log(score >=5 - GoodLuck);
+})(5);
+*/
+
+//Closures 
+
+/*
+function retirement(retirementAge) {
+    var a = ' years lef until retirement';
+    return function(yearOfBirth) {
+        var age = 2018 - yearOfBirth;
+        console.log((retirementAge - age) + a);
+    };
+}
+
+var retirementUS = retirement(65);
+retirementUS(1993);
+
+retirement(65)(1993);
+retirement(65)(2000);
 
 
 
+function  invervewQuestion(job){
+    return function(name){
+        if (job === 'designer'){
+            console.log(name + ' can you please explain what UX design is?');
+        } else if (job === 'teacher') {
+            console.log('Hello ' + name + ' , what subject do you teach?');
+        } else {
+            console.log('Hello ' + name + ' , what do you do?');
+        }
+    };
+}
 
+invervewQuestion('teacher')('Mark');
+*/
 
+//Bind, call and apply
 
+var john ={
+    name: 'John',
+    age: 26, 
+    job: 'teacher',
+    presentation: function(style, timeOfDay){
+        if (style === 'formal'){
+            console.log('Good ' + 
+                timeOfDay + ', Ladies and gentleman! I\'m ' + 
+                this.name + ', I\'m a ' + 
+                this.job + ' I\'m a ' +
+                this.age + ' years old.');
+        } else if(style === 'friendly'){
+            console.log(
+                "Hey! What\'s up?" + 
+                'I\'m ' + 
+                this.name + ', I\'m a ' + 
+                this.job + ' I\'m a ' +
+                this.age + ' years old.' +
+                'Have a nice ' + timeOfDay + '.');
+        }
+    }
+};
 
+john.presentation('formal', 'morning');
+john.presentation('friendly', 'afternoon');

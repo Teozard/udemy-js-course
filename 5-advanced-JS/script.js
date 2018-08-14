@@ -270,22 +270,34 @@ c) correct answer (I would use a number for this)
 7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
 */
 
-
+//part 1
 var Question = function (question, answers, correctAnswer) {
     this.question = question;
     this.answers = answers;
     this.correctAnswer = correctAnswer;
 };
 
-for (var i = 0; i > 10; i++) {
-    console.log('hello world');
-}
+// part 4
+Question.prototype.displayQuestion = function () {
+    console.log(this.question);
+    for (var i = 0; i < this.answers.length; i++) {
+        console.log(i + ': ' + this.answers[i]);
+    }
+};
+
+//part 2
+var q1 = new Question('What is the national animal of Canada?', ['Beaver', 'Raven ', 'Bear'], 0);
+var q2 = new Question('What do dragonflies prefer to eat?', ['Leaves', 'Mosquitoes ', 'Berries'], 1);
+var q3 = new Question('What is called a fish with a snake-like body?', ['River Snake', 'Tigerfish ', 'Eel'], 2);
+
+//part 3
+var questionList = [q1, q2, q3];
+
+var randonQ = Math.floor(Math.random() * questionList.length);
+console.log(questionList[randonQ].displayQuestion());
 
 
-
-
-
-
+//part 5
 
 /*
 --- Expert level ---

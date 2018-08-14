@@ -256,7 +256,6 @@ console.log(fullJapan);
 /////////////////////////////
 // CODING CHALLENGE
 
-
 /*
 --- Let's build a fun quiz game in the console! ---
 1. Build a function constructor called Question to describe a question. A question should include:
@@ -272,21 +271,15 @@ c) correct answer (I would use a number for this)
 */
 
 
+var Question = function (question, answers, correctAnswer) {
+    this.question = question;
+    this.answers = answers;
+    this.correctAnswer = correctAnswer;
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for (var i = 0; i > 10; i++) {
+    console.log('hello world');
+}
 
 
 

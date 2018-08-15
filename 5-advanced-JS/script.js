@@ -271,7 +271,7 @@ c) correct answer (I would use a number for this)
 */
 
 (function () {
-    var Question, q1, q2, q3, questionList, randonQ, userInput;
+    var Question, questionList, randonQ, userInput;
 
     //part 1
     Question = function (question, answers, correctAnswer) {
@@ -287,32 +287,52 @@ c) correct answer (I would use a number for this)
             console.log(i + ': ' + this.answers[i]);
         }
     };
+
+
+
     //part 6
     Question.prototype.checkAnswer = function () {
-        if (this.correctAnswer == userInput) {
-            console.log("This is the correnct answer");
-        } else {
-            console.log('This is not correct');
-        }
+            if (this.correctAnswer == userInput) {
+                console.log("This is the correnct answer");
+                count++;
+                displayScore();
+                showQuestion();
+
+            } else if (userInput == 'exit') {
+                console.log('##### END #####'); // part 9
+            } else {
+                console.log('This is not correct');
+                displayScore();
+                showQuestion();
+            }
     };
+    // part 8
+    function showQuestion() {
+        //part 3
+        randonQ = Math.floor(Math.random() * questionList.length);
+        console.log(questionList[randonQ].displayQuestion());
+        //part 5
+        userInput = window.prompt("Enter the number with the correct answer");
+        questionList[randonQ].checkAnswer();
+    }
+
+    function displayScore(){
+        console.log("Your score: " + count);
+    }
 
     //part 2
-    q1 = new Question('What is the national animal of Canada?', ['Beaver', 'Raven ', 'Bear'], 0);
-    q2 = new Question('What do dragonflies prefer to eat?', ['Leaves', 'Mosquitoes ', 'Berries'], 1);
-    q3 = new Question('What is called a fish with a snake-like body?', ['River Snake', 'Tigerfish ', 'Eel'], 2);
+    var q1 = new Question('What is the national animal of Canada?', ['Beaver', 'Raven ', 'Bear'], 0);
+    var q2 = new Question('What do dragonflies prefer to eat?', ['Leaves', 'Mosquitoes ', 'Berries'], 1);
+    var q3 = new Question('What is called a fish with a snake-like body?', ['River Snake', 'Tigerfish ', 'Eel'], 2);
+    var q4 = new Question('Wellington is the capital city of which country?', ['New Zealand', 'Australia', 'Alaska'], 0);
+    var q5 = new Question('What is the highest number visible on a dartboard?', [10, 22, 46], 1);
+    var q6 = new Question('What is the largest planet in our solar system?', ['Jupiter', 'Saturn ', 'Mars'], 0);
 
+    questionList = [q1, q2, q3, q4, q5, q6];
     //part 3
-    questionList = [q1, q2, q3];
-    randonQ = Math.floor(Math.random() * questionList.length);
-    console.log(questionList[randonQ].displayQuestion());
-
-    //part 5
-    userInput = window.prompt("Enter the number with the correct answer");
-    questionList[randonQ].checkAnswer();
+    var count = 0;
+    showQuestion();
 })();
-
-
-
 
 
 /*

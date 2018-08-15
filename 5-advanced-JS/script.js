@@ -271,14 +271,14 @@ c) correct answer (I would use a number for this)
 */
 
 (function () {
-    var Question, questionList, randonQ, userInput;
+    var questionList, randonQ, userInput;
 
     //part 1
-    Question = function (question, answers, correctAnswer) {
+    function Question(question, answers, correctAnswer) {
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
-    };
+    }
 
     // part 4
     Question.prototype.displayQuestion = function () {
@@ -291,20 +291,21 @@ c) correct answer (I would use a number for this)
 
 
     //part 6
-    Question.prototype.checkAnswer = function () {
-            if (this.correctAnswer == userInput) {
-                console.log("This is the correnct answer");
-                count++;
-                displayScore();
-                showQuestion();
+    Question.prototype.checkAnswer = function (ans) {
 
-            } else if (userInput == 'exit') {
-                console.log('##### END #####'); // part 9
-            } else {
-                console.log('This is not correct');
-                displayScore();
-                showQuestion();
-            }
+        if (this.correctAnswer == ans) {
+            console.log("This is the correnct answer");
+            count++;
+            displayScore();
+            showQuestion();
+
+        } else if (ans == 'exit') {
+            console.log('##### END #####'); // part 9
+        } else {
+            console.log('This is not correct');
+            displayScore();
+            showQuestion();
+        }
     };
     // part 8
     function showQuestion() {
@@ -313,10 +314,11 @@ c) correct answer (I would use a number for this)
         console.log(questionList[randonQ].displayQuestion());
         //part 5
         userInput = window.prompt("Enter the number with the correct answer");
-        questionList[randonQ].checkAnswer();
+        questionList[randonQ].checkAnswer(userInput);
     }
 
-    function displayScore(){
+    //part 11
+    function displayScore() {
         console.log("Your score: " + count);
     }
 

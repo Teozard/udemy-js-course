@@ -297,14 +297,10 @@ c) correct answer (I would use a number for this)
             console.log("This is the correnct answer");
             count++;
             displayScore();
-            showQuestion();
-
-        } else if (ans == 'exit') {
-            console.log('##### END #####'); // part 9
         } else {
             console.log('This is not correct');
             displayScore();
-            showQuestion();
+
         }
     };
     // part 8
@@ -314,7 +310,11 @@ c) correct answer (I would use a number for this)
         console.log(questionList[randonQ].displayQuestion());
         //part 5
         userInput = window.prompt("Enter the number with the correct answer");
-        questionList[randonQ].checkAnswer(userInput);
+        //part 9
+        if(userInput !== 'exit'){
+            questionList[randonQ].checkAnswer(parseInt(userInput));
+            showQuestion();
+        }
     }
 
     //part 11

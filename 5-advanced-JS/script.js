@@ -288,21 +288,26 @@ c) correct answer (I would use a number for this)
         }
     };
 
-
-
     //part 6
-    Question.prototype.checkAnswer = function (ans) {
-
+    Question.prototype.checkAnswer = function (ans, callback) {
+        var sc;
         if (this.correctAnswer == ans) {
             console.log("This is the correnct answer");
-            count++;
-            displayScore();
+            sc = callback(true);
         } else {
             console.log('This is not correct');
-            displayScore();
-
+            sc = callback(false);
         }
+
+        this.displayScore(sc);
     };
+
+    //part 11
+    Question.prototype.displayScore = function (score) {
+        console.log("Your current score is " + score);
+        console.log('--------------------------');
+    };
+
     // part 8
     function showQuestion() {
         //part 3
@@ -311,16 +316,24 @@ c) correct answer (I would use a number for this)
         //part 5
         userInput = window.prompt("Enter the number with the correct answer");
         //part 9
-        if(userInput !== 'exit'){
-            questionList[randonQ].checkAnswer(parseInt(userInput));
+        if (userInput !== 'exit') {
+            questionList[randonQ].checkAnswer(parseInt(userInput), countScore);
             showQuestion();
         }
     }
 
     //part 11
     function displayScore() {
-        console.log("Your score: " + count);
+        var scr = 0;
+        return function (correct) {
+            if (correct) {
+                scr++;
+            }
+            return scr;
+        };
     }
+
+    var countScore = displayScore();
 
     //part 2
     var q1 = new Question('What is the national animal of Canada?', ['Beaver', 'Raven ', 'Bear'], 0);
@@ -332,7 +345,6 @@ c) correct answer (I would use a number for this)
 
     questionList = [q1, q2, q3, q4, q5, q6];
     //part 3
-    var count = 0;
     showQuestion();
 })();
 

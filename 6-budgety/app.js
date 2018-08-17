@@ -1,11 +1,34 @@
 // BUDGET CONTROLLER
-var budgetController = (function() {
-    // code
+var budgetController = (function () {
+
+    var Expense = function (id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    var Income = function (id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    var data = {
+        allItems: {
+            exp: [],
+            inc: []
+        },
+        totals: {
+            exp: 0,
+            inc: 0
+        }
+    };
+
 })();
 
 
 // UI CONTROLER
-var UIController = (function() {
+var UIController = (function () {
 
     var DOMstrings = {
         inputType: '.add__type',
@@ -15,7 +38,7 @@ var UIController = (function() {
     };
 
     return {
-        getInput: function() {
+        getInput: function () {
             return {
                 type: document.querySelector(DOMstrings.inputType).value, // either inc or exp
                 description: document.querySelector(DOMstrings.inputDescription).value,
@@ -23,7 +46,7 @@ var UIController = (function() {
             };
         },
 
-        getDOMstrings: function() {
+        getDOMstrings: function () {
             return DOMstrings;
         }
     };
@@ -31,10 +54,10 @@ var UIController = (function() {
 })();
 
 // GLOBAL APP CONTROLLER
-var controller = (function(budgetCtrl, UICtrl) {
+var controller = (function (budgetCtrl, UICtrl) {
 
 
-    var setupEventListeners = function() {
+    var setupEventListeners = function () {
         // get DOM list from the UI Controller
         var DOM = UICtrl.getDOMstrings();
 
@@ -42,7 +65,7 @@ var controller = (function(budgetCtrl, UICtrl) {
         document.querySelector(DOM.inputButton).addEventListener('click', ctrlAddItem);
 
         //hit by enter
-        document.addEventListener('keypress', function(event) {
+        document.addEventListener('keypress', function (event) {
             // 13 is the keycode for the enter key
             if (event.keyCode === 13 || event.which === 13) {
                 ctrlAddItem();
@@ -50,7 +73,7 @@ var controller = (function(budgetCtrl, UICtrl) {
         });
     };
 
-    var ctrlAddItem = function() {
+    var ctrlAddItem = function () {
         // 1. Get the field input data
         var input = UICtrl.getInput();
 
@@ -64,7 +87,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     };
 
     return {
-        init: function() {
+        init: function () {
             setupEventListeners();
         }
     };

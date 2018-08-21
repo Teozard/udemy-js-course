@@ -13,6 +13,14 @@ var budgetController = (function () {
         this.value = value;
     };
 
+    var calculateTotal = function (type) {
+        var sum = 0;
+        data.allItems[type].forEach(function (cur) {
+            sum = sum + cur.value;
+        });
+        data.totals[type] = sum;
+    };
+
     var data = {
         allItems: {
             exp: [],
@@ -21,11 +29,13 @@ var budgetController = (function () {
         totals: {
             exp: 0,
             inc: 0
-        }
+        },
+        budget: 0,
+        percentage: -1
     };
 
     return {
-        addItem: function(type, des, val) {
+        addItem: function (type, des, val) {
             var newItem, ID;
 
 
@@ -36,7 +46,7 @@ var budgetController = (function () {
                 ID = 0;
             }
             // create new item based on inc or exp type
-            if (type === 'exp'){
+            if (type === 'exp') {
                 newItem = new Expense(ID, des, val);
             } else if (type === 'inc') {
                 newItem = new Income(ID, des, val);
@@ -47,6 +57,33 @@ var budgetController = (function () {
 
             // return the new element
             return newItem;
+        },
+
+        calculateBudget: function () {
+
+            // calculate total income and expenses
+            calculateTotal('exp');
+            calculateTotal('inc');
+
+            // calculate the budget: income - expenses
+            data.budget = data.totals.inc - data.totals.exp;
+
+            // caclulate the precentage of income that we spent
+            if (data.totals.inc > 0) {
+                data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+            } else {
+                data.percentage = -1;
+            }
+
+        },
+
+        getBudget: function () {
+            return {
+                budget: data.budget,
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp,
+                percentage: data.percentage
+            }
         },
 
         testing: function () {
@@ -102,7 +139,7 @@ var UIController = (function () {
 
         },
 
-        clearFields: function() {
+        clearFields: function () {
             var fields, fieldsArr;
             fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
 
@@ -143,13 +180,16 @@ var controller = (function (budgetCtrl, UICtrl) {
         });
     };
 
-    var updateBudget = function()  {
+    var updateBudget = function () {
 
         // 1. Calculate the budget
+        budgetCtrl.calculateBudget();
 
         // 2. Return the budget
+        var budget = budgetCtrl.getBudget();
 
         // 3. Display the budget on the UI
+        console.log(budget);
 
     };
 

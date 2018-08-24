@@ -135,8 +135,6 @@ var UIController = (function () {
 
             // Insert the HTML into the dom
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
-
-
         },
 
         clearFields: function () {
